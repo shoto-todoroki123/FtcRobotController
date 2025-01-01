@@ -1,14 +1,19 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+@Config
 
 public class Lift {
     DcMotor liftMotor;
     Servo bucketServo;
     public static int maxTicks = 1188;
     public static double radius = 3.5;
+    public static double PositionDump = .8;
+    public static double PositionRecieve = .2;
 
     public Lift(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotor.class, "liftMotor");
@@ -30,11 +35,15 @@ public class Lift {
         this.liftMotor.setTargetPosition(Math.min(maxTicks, Math.max(0, ticks)));
 
     }
+    public void setLiftPosition(double liftPosition){
+        int ticks = (int)(liftPosition*maxTicks);
+        this.liftMotor.setTargetPosition(Math.min(maxTicks, Math.max(0, ticks)));
+    }
 
     public void bucketRecieve(){
-        this.bucketServo.setPosition(1);
+        this.bucketServo.setPosition(PositionRecieve);
     }
     public void bucketDump() {
-        this.bucketServo.setPosition(0);
+        this.bucketServo.setPosition(PositionDump);
     }
 }

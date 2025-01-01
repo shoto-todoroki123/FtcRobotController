@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -7,12 +8,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Config
 public class Intanke {
     public DcMotorEx liftMotor;
     Servo clawServo;
-    int maxTicks = 123;
-    double mg = 10;
-    double verticalOffset = 27;
+    public static int maxTicks = 123;
+    public static double mg = 10;
+   public static double verticalOffset = 27;
+    public static int clawGrab = 123;
+    public static int clawFold = 0;
     public Intanke(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "lift");
         this.clawServo = hardwareMap.get(Servo.class, "clawServo");
@@ -52,6 +56,12 @@ public class Intanke {
     }
     public void intakeStop(){
         this.clawServo.setPosition(.5);
+    }
+    public void clawUp(){
+        this.liftMotor.setTargetPosition(clawFold);
+    }
+    public void clawDown(){
+        this.liftMotor.setTargetPosition(clawGrab);
     }
 
 }
