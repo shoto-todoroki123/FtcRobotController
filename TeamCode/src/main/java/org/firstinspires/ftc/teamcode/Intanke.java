@@ -12,10 +12,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Intanke {
     public DcMotorEx liftMotor;
     Servo clawServo;
-    public static int maxTicks = 123;
+    public static int maxTicks = 150;
     public static double mg = 10;
-   public static double verticalOffset = 27;
-    public static int clawGrab = 123;
+   public static double verticalOffset = 59;
+    public static int clawGrab = 150;
     public static int clawFold = 0;
     public Intanke(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "lift");
