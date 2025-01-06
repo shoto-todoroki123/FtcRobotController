@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@TeleOp(name = "org.firstinspires.ftc.teamcode.TeleOpTesting")
+@TeleOp(name = "TeleOpTesting")
 public class TeleOpTesting extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
