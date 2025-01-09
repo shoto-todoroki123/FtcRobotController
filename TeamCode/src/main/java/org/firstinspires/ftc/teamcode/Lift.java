@@ -16,10 +16,12 @@ public class Lift {
     public static double radius = 3.5;
     public static double PositionDump = .8;
     public static double PositionRecieve = .2;
-    public static double P = 1;
+    public static double P = 35;
     public static double I = 0;
-    public static double D = 0;
-    public static double F = 0;
+    public static double D = 10;
+    public static double F = 150;
+    public static int liftUpSpeed = 50;
+    public static int liftDownSpeed = 50;
 
 
     public Lift(HardwareMap hardwareMap) {
@@ -52,6 +54,13 @@ public class Lift {
     }
     public void bucketDump() {
         this.bucketServo.setPosition(PositionDump);
+    }
+    public void moveUp(){
+     this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()+liftUpSpeed));
+    }
+    public void moveDown(){
+        this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
+
     }
     public void update(){
         PIDFCoefficients coefficients = new PIDFCoefficients(P,I,D,F);

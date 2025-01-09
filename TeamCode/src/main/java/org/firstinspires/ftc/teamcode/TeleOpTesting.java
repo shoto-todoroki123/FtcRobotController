@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -16,6 +17,9 @@ public class TeleOpTesting extends LinearOpMode {
     private ClawExtender extender = null;
     private boolean clawIsForward = true;
     private boolean previousA =  false;
+    private boolean previousLT = false;
+    private FtcDashboard dashboard;
+
 
 
     @Override
@@ -28,6 +32,9 @@ public class TeleOpTesting extends LinearOpMode {
          extender = new ClawExtender(hardwareMap);
          clawIsForward = true;
          previousA = false;
+         previousLT = false;
+         dashboard = FtcDashboard.getInstance();
+         telemetry = dashboard.getTelemetry();
 
 
          waitForStart();
@@ -58,32 +65,20 @@ public class TeleOpTesting extends LinearOpMode {
              telemetry.addData("x", poseEstimate.getX());
              telemetry.addData("y", poseEstimate.getY());
              telemetry.addData("heading", poseEstimate.getHeading());
-             telemetry.update();
-             if (gamepad2.y) {
-                 double y = 61.5 * gamepad2.left_stick_y + 61.5;
-                 intanke.setClawAngle((int) y);
+             telemetry.addData("liftTargetPosition",lift.liftMotor.getTargetPosition());
+             telemetry.addData("actualPositionOfLift", lift.liftMotor.getCurrentPosition());
+             if(gamepad2.right_stick_y<-.5){
+                 lift.moveUp();
              }
-             double line = .5*gamepad2.right_stick_y+.5;
-             lift.setLiftPosition((int) line);
-             if (gamepad2.a){
+             if(gamepad2.right_stick_y>.5){
+                 lift.moveDown();
+             }
+             if (gamepad2.a) {
                  intanke.intakeIn();
-             }
-             if (gamepad2.b){
+             }else if (gamepad2.b){
                  intanke.intakeOut();
-             }
-             if (gamepad2.x){
+             }else {
                  intanke.intakeStop();
-             }
-             if (gamepad1.left_bumper){
-                 drive.setPoseEstimate(new Pose2d(0,0,Math.toRadians(90)));
-
-             }
-             if (gamepad1.right_bumper){
-                 Trajectory traj = drive.trajectoryBuilder(poseEstimate)
-                         .lineToLinearHeading(new Pose2d(0, 0, Math.toRadians(90)))
-                         .build();
-                 drive.followTrajectory(traj);
-
              }
              if (gamepad2.dpad_up){
                  lift.bucketRecieve();
@@ -103,8 +98,17 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.right_bumper){
                  extender.pushClawOut();
              }
+             if(gamepad2.left_trigger>.5 && !previousLT){
+                 intanke.jiggleEncoderTicks();
+             }
+             previousLT = gamepad2.left_trigger>.5;
+             if(gamepad2.right_trigger>.5){
+                 intanke.reset();
+             }
              intanke.update();
+             lift.update();
              drive.update();
+             telemetry.update();
          }
     }
 

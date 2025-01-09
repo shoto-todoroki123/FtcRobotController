@@ -17,6 +17,8 @@ public class AutonomousTesting extends LinearOpMode {
     private ClawExtender extender = null;
     private Trajectory traj1;
     private Trajectory traj2;
+    private Trajectory traj3;
+    private Trajectory traj4;
 
 
     @Override
@@ -30,16 +32,38 @@ public class AutonomousTesting extends LinearOpMode {
 
 
          traj1 =  drive.trajectoryBuilder(drive.getPoseEstimate())
+                 .addTemporalMarker(0, ()->{
+                     lift.liftMotor.setTargetPosition(503);
+                     lift.bucketRecieve();
+                 })
                 .lineToLinearHeading(new Pose2d(0,35, Math.toRadians(-90)))
-                .addDisplacementMarker(() -> drive.followTrajectoryAsync(traj2))
+                .addDisplacementMarker(() ->{
+                   lift.bucketDump();
+                   sleep(1000);
+                    drive.followTrajectoryAsync(traj2);
+                })
                 .build();
          traj2 = drive.trajectoryBuilder(traj1.end(), true)
-                .splineToLinearHeading(new Pose2d(48.07,41,Math.toRadians(90.1)),Math.toRadians(270))
-                .addTemporalMarker(2.5, () ->{
+                .splineToLinearHeading(new Pose2d(49.5,41,Math.toRadians(90.1)),Math.toRadians(270))
+                .addTemporalMarker(0, () ->{
                   intanke.clawDown();
                   intanke.intakeIn();
                 })
                 .build();
+         traj3 = drive.trajectoryBuilder(traj2.end(), true)
+                 .splineToLinearHeading(new Pose2d(48.85,38.45 ,Math.toRadians(-90.)), Math.toRadians(270))
+                 .addTemporalMarker(1.0, () ->{
+                     intanke.clawUp();
+                     intanke.intakeOut();
+                 })
+                .build();
+         //traj4 = drive trajectoryBuilder(traj3.end(), true)
+               // .splineToLinearHeading(new Pose2d(60.03, 39.63, Math.toRadians(-90)), Math.toRadians(270))
+
+
+
+
+
 
         waitForStart();
 
@@ -55,6 +79,7 @@ public class AutonomousTesting extends LinearOpMode {
 
             intanke.update();
             drive.update();
+            lift.update();
         }
     }
 
