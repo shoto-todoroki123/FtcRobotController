@@ -127,7 +127,7 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
                      intanke.intakeIn();
                  })
                  .setReversed(false)
-                 .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90))Math.toRadians(270))
+                 .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90)),Math.toRadians(270))
                  .build();
 
         waitForStart();
