@@ -53,7 +53,7 @@ public class AwesomeOpMode extends LinearOpMode {
             // frontRight.setPower(rfPower);
             // backLeft.setPower(lbPower);
             // backRight.setPower(rbPower);
-            extender.setServoAngles(gamepad1.right_trigger);
+
 
             //     if (gamepad2.x) {
             //     //back slide go out final++

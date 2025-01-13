@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,11 @@ public class RedSideBackAutonoumousTesting extends LinearOpMode {
     private SampleMecanumDrive drive = null;
     private ClawExtender extender = null;
     private TrajectorySequence traj1;
+    private TrajectorySequence traj0;
+    private TrajectorySequence traj2;
+    private TrajectorySequence traj3;
+    private TrajectorySequence traj4;
+    private TrajectorySequence traj5;
 
 
 
@@ -39,98 +45,43 @@ public class RedSideBackAutonoumousTesting extends LinearOpMode {
                 })
                 .waitSeconds(1)
                 .setReversed(true)
-                .addTemporalMarker( () ->{
-                    intanke.clawDown();
-                    intanke.intakeIn();
-                    lift.setLiftPosition(0);
-                    lift.bucketRecieve();
-                })
-                .splineToLinearHeading(new Pose2d(-48.7,-38.06,Math.toRadians(90.1)),Math.toRadians(270))
-                .addTemporalMarker( () ->{
-                    intanke.clawUp();
-                })
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-54.15,-58.27 ,Math.toRadians(-90.)), Math.toRadians(270))
-                .addTemporalMarker(()->{
-                    intanke.intakeOut();
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.setLiftPosition(506);
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketDump();
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketRecieve();
-                    lift.setLiftPosition(0);
-                })
-                .addTemporalMarker(()->{
-                    intanke.clawDown();
-                    intanke.intakeIn();
-                })
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(56.31, -39.83, Math.toRadians(-90)), Math.toRadians(270))
-                .addTemporalMarker(()->{
-                    intanke.clawUp();
-                })
-                .waitSeconds(.25)
-                .addTemporalMarker(()->{
-                    intanke.intakeOut();
-                })
-                .splineToLinearHeading(new Pose2d(-59.64, -61.8,Math.toRadians(-90)), Math.toRadians(270))
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.setLiftPosition(506);
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketDump();
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketRecieve();
-                    lift.setLiftPosition(0);
-                })
-                .addTemporalMarker(()->{
-                    intanke.clawDown();
-                    intanke.intakeIn();
-                })
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-64.54, -39.63,Math.toRadians(-90)), Math.toRadians(270))
-                .addTemporalMarker(()->{
-                    intanke.clawUp();
-                })
-                .waitSeconds(.25)
-                .addTemporalMarker(()->{
-                    intanke.intakeOut();
-                })
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(62.98,-62.58 ,Math.toRadians(-90)), Math.toRadians(270))
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.setLiftPosition(506);
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketDump();
-                })
-                .waitSeconds(.5)
-                .addTemporalMarker(()->{
-                    lift.bucketRecieve();
-                    lift.setLiftPosition(0);
-                })
-                .addTemporalMarker(()->{
-                    intanke.clawDown();
-                    intanke.intakeIn();
-                })
                 .build();
+        TrajectorySequence traj0 = drive.trajectorySequenceBuilder(new Pose2d(-0.54, 34.03, Math.toRadians(90.00)))
+                .splineTo(new Vector2d(-29.71, 36.19), Math.toRadians(212.82))
+                .splineTo(new Vector2d(-36.96, 8.26), Math.toRadians(-90.00))
+                .build();
+        TrajectorySequence traj2 = drive.trajectorySequenceBuilder(new Pose2d(-36.96, 8.26, Math.toRadians(-90.00)))
+                .splineTo(new Vector2d(-44.68, 20.45), Math.toRadians(100.36))
+                .splineTo(new Vector2d(-45.30, 25.23), Math.toRadians(93.75))
+                .splineTo(new Vector2d(-50.55, 55.79), Math.toRadians(102.86))
+                .build();
+        TrajectorySequence traj3 = drive.trajectorySequenceBuilder(new Pose2d(-50.55, 55.79, Math.toRadians(102.86)))
+                .splineTo(new Vector2d(-47.61, 15.20), Math.toRadians(267.90))
+                .build();
+        TrajectorySequence traj4 = drive.trajectorySequenceBuilder(new Pose2d(-56.83, 62.13, Math.toRadians(90.00)))
+                .splineTo(new Vector2d(-57.55, 41.18), Math.toRadians(254.34))
+                .splineTo(new Vector2d(-59.00, 16.13), Math.toRadians(259.01))
+                .build();
+        TrajectorySequence traj5 = drive.trajectorySequenceBuilder(new Pose2d(-59.00, 16.13, Math.toRadians(259.01)))
+                .splineTo(new Vector2d(-62.61, 12.04), Math.toRadians(88.35))
+                .splineTo(new Vector2d(-62.13, 37.57), Math.toRadians(88.93))
+                .splineTo(new Vector2d(-60.92, 50.81), Math.toRadians(85.68))
+                .splineTo(new Vector2d(-59.72, 63.33), Math.toRadians(99.32))
+                .build();
+
+
+
+
+
 
         waitForStart();
 
         drive.followTrajectorySequenceAsync(traj1);
+        drive.followTrajectorySequenceAsync(traj0);
+        drive.followTrajectorySequenceAsync(traj2);
+        drive.followTrajectorySequenceAsync(traj3);
+        drive.followTrajectorySequenceAsync(traj4);
+        drive.followTrajectorySequenceAsync(traj5);
 
         while (opModeIsActive()) {
 

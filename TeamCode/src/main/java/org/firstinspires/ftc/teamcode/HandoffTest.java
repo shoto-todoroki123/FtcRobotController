@@ -40,8 +40,9 @@ public class HandoffTest extends LinearOpMode {
              telemetry.addData("x", poseEstimate.getX());
              telemetry.addData("y", poseEstimate.getY());
              telemetry.addData("heading", poseEstimate.getHeading());
-             int currentPosition = intanke.liftMotor.getCurrentPosition();
-             telemetry.addData("motor position:", currentPosition);
+             int currentPosition = extender.double_lift.getCurrentPosition();
+             //telemetry.addData("motor position:", currentPosition);\
+             telemetry.addData("doubleLift", currentPosition);
              telemetry.update();
              if(gamepad2.y){
                  double y = 61.5* gamepad2.left_stick_y+61.5;
