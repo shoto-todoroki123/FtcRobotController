@@ -23,9 +23,12 @@ import com.qualcomm.robotcore.hardware.Servo;
         this.double_lift.setTargetPosition((int)min);
     }
      public void reset() {
+        this.double_lift.setTargetPosition(0);
         this.double_lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.double_lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.double_lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.double_lift.setPower(1);
+
 
     }
 }
