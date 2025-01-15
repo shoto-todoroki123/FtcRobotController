@@ -7,6 +7,7 @@ import com.acmerobotics.roadrunner.localization.TwoTrackingWheelLocalizer;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+
 import org.firstinspires.ftc.teamcode.util.Encoder;
 
 import java.util.Arrays;
@@ -64,10 +65,6 @@ public class TwoWheelTrackingLocalizer extends TwoTrackingWheelLocalizer {
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE)
         //parallelEncoder.setDirection(Encoder.Direction.REVERSE);
-    }
-
-    public TwoWheelTrackingLocalizer(HardwareMap hardwareMap) {
-        super();
     }
 
     public static double encoderTicksToInches(double ticks) {

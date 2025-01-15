@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.drive;
 
 import androidx.annotation.NonNull;
 
+import org.firstinspires.ftc.teamcode.drive.TwoWheelTrackingLocalizer;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
@@ -132,7 +133,7 @@ public class SampleMecanumDrive extends MecanumDrive {
         List<Integer> lastTrackingEncVels = new ArrayList<>();
 
         // TODO: if desired, use setLocalizer() to change the localization method
-        setLocalizer(new org.firstinspires.ftc.teamcode.drive.TwoWheelTrackingLocalizer(hardwareMap, this));
+        setLocalizer(new TwoWheelTrackingLocalizer(hardwareMap, this));
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(
                 follower, HEADING_PID, batteryVoltageSensor,
