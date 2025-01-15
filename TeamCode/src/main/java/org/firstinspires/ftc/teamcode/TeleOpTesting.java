@@ -92,12 +92,12 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.dpad_right){
                  intanke.clawDown();
              }
-             if(gamepad2.left_bumper){
+            /* if(gamepad2.left_bumper){
                  extender.pushClawIn();
              }
              if(gamepad2.right_bumper){
                  extender.pushClawOut();
-             }
+             }*/
              if(gamepad2.left_trigger>.5 && !previousLT){
                  intanke.jiggleEncoderTicks();
              }

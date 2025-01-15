@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "BlueSideBackAutonomousTesting")
-public class BlueSideBackAutonoumousTesting extends LinearOpMode {
+@Autonomous(name = "BlueSideBackAutonomousTestingIncorrect")
+public class BlueSideBackAutonoumousTestingIncorrect extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
     private SampleMecanumDrive drive = null;

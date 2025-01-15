@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @TeleOp(name = "HandoffTest")
@@ -15,6 +16,7 @@ public class HandoffTest extends LinearOpMode {
     private Lift lift = null;
     private SampleMecanumDrive drive = null;
     private ClawExtender extender = null;
+
 
 
     @Override
@@ -40,9 +42,8 @@ public class HandoffTest extends LinearOpMode {
              telemetry.addData("x", poseEstimate.getX());
              telemetry.addData("y", poseEstimate.getY());
              telemetry.addData("heading", poseEstimate.getHeading());
-             int currentPosition = extender.double_lift.getCurrentPosition();
-             //telemetry.addData("motor position:", currentPosition);\
-             telemetry.addData("doubleLift", currentPosition);
+
+
              telemetry.update();
              if(gamepad2.y){
                  double y = 61.5* gamepad2.left_stick_y+61.5;
@@ -82,12 +83,12 @@ public class HandoffTest extends LinearOpMode {
              if(gamepad2.dpad_right){
                  intanke.clawDown();
              }
-             if(gamepad2.left_bumper){
+            /* if(gamepad2.left_bumper){
                  extender.pushClawIn();
              }
              if(gamepad2.right_bumper){
                  extender.pushClawOut();
-             }
+             }*/
              intanke.update();
              drive.update();
          }
