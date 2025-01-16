@@ -4,25 +4,24 @@ import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 
 @Config
 public class ClawExtender {
     DcMotorEx double_lift;
 
-    public static double min = 0;
-    public static double max = 63;
+    public static int min = 0;
+    public static int max = 63;
 
     public void ClawExtender(HardwareMap hardwareMap){
         this.double_lift = hardwareMap.get(DcMotorEx.class, "double_lift");
         this.reset();
     }
     public void pushClawOut(){
-        this.double_lift.setTargetPosition((int)max     );
+        this.double_lift.setTargetPosition(max);
     }
     public void pushClawIn(){
-        this.double_lift.setTargetPosition((int)min);
+        this.double_lift.setTargetPosition( min);
     }
      public void reset() {
         this.double_lift.setTargetPosition(0);

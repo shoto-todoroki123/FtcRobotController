@@ -52,8 +52,6 @@ public class RedSideBackAutonoumousTesting extends LinearOpMode {
                 .addTemporalMarker(()->{
                     lift.bucketDump();
                 })
-                .waitSeconds(1)
-                .setReversed(true)
                 .build();
          traj0 = drive.trajectorySequenceBuilder(new Pose2d(-0.54, 34.03, Math.toRadians(90.00)))
                 .splineTo(new Vector2d(-29.71, 36.19), Math.toRadians(212.82))
