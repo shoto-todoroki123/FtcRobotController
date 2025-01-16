@@ -25,7 +25,7 @@ public class BlueSideBackAutonoumousTestingIncorrect extends LinearOpMode {
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        extender = new ClawExtender(hardwareMap);
+        extender = new ClawExtender();
 
 
         traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())

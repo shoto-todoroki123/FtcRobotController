@@ -35,21 +35,7 @@ public class AwesomeOpMode extends LinearOpMode {
         // clawFrontLeft = hardwareMap.get(Servo.class, "claw_front_left_motor");
         // clawFrontRight = hardwareMap.get(Servo.class, "claw_front_right_motor");
         // clawBack = hardwareMap.get(Servo.class, "claw_back_motor");
-        extender = new ClawExtender(hardwareMap);
-
-        waitForStart();
-
-        while (opModeIsActive()) {
-            double drive = gamepad1.left_stick_x;
-            double strafe = gamepad1.right_stick_x;
-            double rotate = gamepad1.right_stick_y;
-
-            double lfPower = drive + strafe + rotate;
-            double rfPower = drive - strafe - rotate;
-            double lbPower = drive - strafe + rotate;
-            double rbPower = drive + strafe - rotate;
-
-            // frontLeft.setPower(lfPower);
+       //(lfPower);
             // frontRight.setPower(rfPower);
             // backLeft.setPower(lbPower);
             // backRight.setPower(rbPower);
@@ -111,4 +97,4 @@ public class AwesomeOpMode extends LinearOpMode {
             //     }
         }
     }
-}
+

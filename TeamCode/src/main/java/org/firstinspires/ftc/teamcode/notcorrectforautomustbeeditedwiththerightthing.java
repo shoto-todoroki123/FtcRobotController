@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "RedSideFrontAutonomousTesting")
-public class RedSideFrontAutonomousTesting extends LinearOpMode {
+@Autonomous(name = "notcorrectforautomustbeeditedwiththerightthing")
+public class notcorrectforautomustbeeditedwiththerightthing extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
     private SampleMecanumDrive drive = null;
@@ -25,7 +25,7 @@ public class RedSideFrontAutonomousTesting extends LinearOpMode {
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        extender = new ClawExtender(hardwareMap);
+        extender = new ClawExtender();
 
 
         traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())

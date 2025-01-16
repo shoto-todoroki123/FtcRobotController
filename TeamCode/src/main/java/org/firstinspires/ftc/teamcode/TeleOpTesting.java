@@ -29,7 +29,7 @@ public class TeleOpTesting extends LinearOpMode {
          drive = new SampleMecanumDrive(hardwareMap);
          drive.setPoseEstimate(new Pose2d(0,0,Math.toRadians(90)));
          drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         extender = new ClawExtender(hardwareMap);
+         extender = new ClawExtender();
          clawIsForward = true;
          previousA = false;
          previousLT = false;
@@ -73,31 +73,31 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.right_stick_y>.5){
                  lift.moveDown();
              }
-             if (gamepad2.a) {
+             if (gamepad2.dpad_up) {
                  intanke.intakeIn();
-             }else if (gamepad2.b){
+             }else if (gamepad2.dpad_down){
                  intanke.intakeOut();
              }else {
                  intanke.intakeStop();
              }
-             if (gamepad2.dpad_up){
+             if (gamepad2.b){
                  lift.bucketRecieve();
              }
-             if(gamepad2.dpad_down){
+             if(gamepad2.x){
                  lift.bucketDump();
              }
-             if(gamepad2.dpad_left){
+             if(gamepad2.left_bumper){
                  intanke.clawUp();
              }
-             if(gamepad2.dpad_right){
+             if(gamepad2.right_bumper){
                  intanke.clawDown();
              }
-            /* if(gamepad2.left_bumper){
+             if(gamepad2.dpad_right){
                  extender.pushClawIn();
              }
-             if(gamepad2.right_bumper){
+             if(gamepad2.dpad_left){
                  extender.pushClawOut();
-             }*/
+             }
              if(gamepad2.left_trigger>.5 && !previousLT){
                  intanke.jiggleEncoderTicks();
              }
