@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@TeleOp(name = "TeleOpTesting")
+@TeleOp(name = "TeleOp")
 public class TeleOpTesting extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
@@ -29,7 +29,7 @@ public class TeleOpTesting extends LinearOpMode {
          drive = new SampleMecanumDrive(hardwareMap);
          drive.setPoseEstimate(new Pose2d(0,0,Math.toRadians(90)));
          drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-         extender = new ClawExtender();
+         extender = new ClawExtender(hardwareMap);
          clawIsForward = true;
          previousA = false;
          previousLT = false;
@@ -40,6 +40,15 @@ public class TeleOpTesting extends LinearOpMode {
          waitForStart();
 
          while (opModeIsActive()) {
+             Pose2d poseEstimate = drive.getPoseEstimate();
+             telemetry.addData("x", poseEstimate.getX());
+             telemetry.addData("y", poseEstimate.getY());
+             telemetry.addData("heading", poseEstimate.getHeading());
+             int currentPosition = intanke.liftMotor.getCurrentPosition();
+             telemetry.addData("motor position:", currentPosition);
+             int current = extender.double_lift.getCurrentPosition();
+             telemetry.addData("motor position:", current);
+             telemetry.update();
              if (clawIsForward) {
                  drive.setWeightedDrivePower(
                          new Pose2d(
@@ -60,22 +69,16 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad1.a && !previousA){
                 clawIsForward = !clawIsForward;
              }
-             previousA = gamepad1.a;
-             Pose2d poseEstimate = drive.getPoseEstimate();
-             telemetry.addData("x", poseEstimate.getX());
-             telemetry.addData("y", poseEstimate.getY());
-             telemetry.addData("heading", poseEstimate.getHeading());
-             telemetry.addData("liftTargetPosition",lift.liftMotor.getTargetPosition());
-             telemetry.addData("actualPositionOfLift", lift.liftMotor.getCurrentPosition());
-             if(gamepad2.right_stick_y<-.5){
+
+             if(gamepad2.left_stick_y<-.5){
                  lift.moveUp();
              }
-             if(gamepad2.right_stick_y>.5){
+             if(gamepad2.left_stick_y>.5){
                  lift.moveDown();
              }
-             if (gamepad2.dpad_up) {
-                 intanke.intakeIn();
-             }else if (gamepad2.dpad_down){
+            // if (gamepad2.right_trigger>0) {
+              //   intanke.intakeIn();
+             if (gamepad2.left_trigger>0){
                  intanke.intakeOut();
              }else {
                  intanke.intakeStop();
@@ -92,19 +95,28 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.right_bumper){
                  intanke.clawDown();
              }
-             if(gamepad2.dpad_right){
+             if(gamepad2.right_stick_y<0){
                  extender.pushClawIn();
              }
-             if(gamepad2.dpad_left){
+             if(gamepad2.right_stick_y>0){
                  extender.pushClawOut();
              }
-             if(gamepad2.left_trigger>.5 && !previousLT){
-                 intanke.jiggleEncoderTicks();
+             if(gamepad2.y){
+                 lift.hang();
              }
-             previousLT = gamepad2.left_trigger>.5;
-             if(gamepad2.right_trigger>.5){
-                 intanke.reset();
-             }
+             //if(gamepad2.left_trigger>.5 && !previousLT){
+              //   intanke.jiggleEncoderTicks();
+            // }
+            // previousLT = gamepad2.left_trigger>.5;
+             //if(gamepad2.right_trigger>.5){
+             //    intanke.reset();
+             //}
+            // if(gamepad2.left_trigger>.5){
+              //   intanke.wristZero();
+             //}
+             //if(gamepad2.right_trigger>.5){
+               //  intanke.wristTurned();
+             //}
              intanke.update();
              lift.update();
              drive.update();

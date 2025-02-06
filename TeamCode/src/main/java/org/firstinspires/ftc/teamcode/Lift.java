@@ -12,21 +12,23 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Lift {
     DcMotorEx liftMotor;
     Servo bucketServo;
-    public static int maxTicks = 1188;
+    DcMotor hangMotor;
+    public static int maxTicks = 5800;
     public static double radius = 3.5;
     public static double PositionDump = .8;
     public static double PositionRecieve = .2;
-    public static double P = 35;
-    public static double I = 0;
+    public static double P = 15;
+    public static double I = 1;
     public static double D = 10;
-    public static double F = 150;
-    public static int liftUpSpeed = 50;
-    public static int liftDownSpeed = 50;
+    public static double F = 0;
+    public static int liftUpSpeed = 550;
+    public static int liftDownSpeed = 550;
 
 
     public Lift(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "liftMotor");
         this.bucketServo = hardwareMap.get(Servo.class, "bucketServo");
+        this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
         this.reset();
     }
 
@@ -61,6 +63,9 @@ public class Lift {
     public void moveDown(){
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
 
+    }
+    public void hang(){
+        this.hangMotor. setTargetPosition(90);
     }
     public void update(){
         PIDFCoefficients coefficients = new PIDFCoefficients(P,I,D,F);

@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "BlueSideFrontAutonomousTesting")
-public class BlueSideFrontAutonomousTesting extends LinearOpMode {
+@Autonomous(name = "DONTUSETHISAUTO")
+public class DONTUSETHISAUTO extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
     private SampleMecanumDrive drive = null;
@@ -25,12 +25,12 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        extender = new ClawExtender();
+        extender = new ClawExtender(hardwareMap);
 
 
          traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                  .addTemporalMarker( ()->{
-                     lift.setLiftPosition(503);
+                     lift.setLiftHeight(35);
                      lift.bucketRecieve();
                  })
                 .lineToLinearHeading(new Pose2d(0,35, Math.toRadians(-90)))
@@ -38,18 +38,18 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
                      lift.bucketDump();
                  })
                  .waitSeconds(1)
-                 .setReversed(true)
+                 .setReversed(false)
                  .addTemporalMarker( () ->{
                      intanke.clawDown();
                      intanke.intakeIn();
                      lift.setLiftPosition(0);
                      lift.bucketRecieve();
                  })
-                 .splineToLinearHeading(new Pose2d(49.5,41,Math.toRadians(90.1)),Math.toRadians(270))
+                 .splineToLinearHeading(new Pose2d(49.5,41,Math.toRadians(270)),Math.toRadians(90))
                  .addTemporalMarker( () ->{
                      intanke.clawUp();
                  })
-                 .setReversed(false)
+                 .setReversed(true)
                  .splineToLinearHeading(new Pose2d(48.85,38.45 ,Math.toRadians(-90.)), Math.toRadians(270))
                  .addTemporalMarker(()->{
                     intanke.intakeOut();
