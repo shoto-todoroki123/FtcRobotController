@@ -39,7 +39,7 @@ public class RedSide extends LinearOpMode {
         intanke = new Intanke(hardwareMap);
         lift =  new Lift(hardwareMap);
         drive = new SampleMecanumDrive(hardwareMap);
-        drive.setPoseEstimate(new Pose2d(-29.75,63.75,Math.toRadians(-90)));
+        drive.setPoseEstimate(new Pose2d(-30,63.75,Math.toRadians(-80)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extender = new ClawExtender(hardwareMap);
 
@@ -51,21 +51,22 @@ public class RedSide extends LinearOpMode {
 
        TrajectorySequence traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                 .addTemporalMarker( ()->{
-                    lift.setLiftHeight(200);
+                    lift.setLiftHeight(4200);
                     lift.bucketRecieve();
                 })
-                .lineToLinearHeading(new Pose2d(5,33, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(0,32, Math.toRadians(-80)))
                 .addTemporalMarker(()->{
                     lift.bucketDump();
+                    lift.setLiftHeight(0);
                 })
-                .waitSeconds(3)
+                .waitSeconds(1)
                 .setReversed(false)
-                .build();
-       TrajectorySequence traj0 = drive.trajectorySequenceBuilder(traj1.end())
-               .splineTo(new Vector2d(-29.71, 36.19), Math.toRadians(-90))
-               .splineTo(new Vector2d(-36.96, 8.26), Math.toRadians(-90))
+               //.lineToLinearHeading(new Pose2d(0,25 , Math.toRadians(-90)))
+              // .waitSeconds(1)
+               .lineToLinearHeading(new Pose2d(0,40, Math.toRadians(-90)))
+              // .splineTo(new Vector2d(-30, 63.75), Math.toRadians(-90))
                .build();
-        //Trajector traj2 = drive.trajectoryBuilder(trag0.end())
+        //Trajector traj2 = drive.trajectoryBuilder(traj0.end())
                 // .splineTo(new Vector2d(-44.68, 20.45), Math.toRadians(100.36))
                 //.splineTo(new Vector2d(-45.30, 25.23), Math.toRadians(93.75))
                 //.splineTo(new Vector2d(-50.55, 55.79), Math.toRadians(102.86))
@@ -181,9 +182,8 @@ public class RedSide extends LinearOpMode {
 */
 
         waitForStart();
-
         drive.followTrajectorySequenceAsync(traj1);
-        drive.followTrajectorySequenceAsync(traj0);
+       // drive.followTrajectorySequenceAsync(traj0);
         /*drive.followTrajectorySequenceAsync(traj2);
         drive.followTrajectorySequenceAsync(traj3);
         drive.followTrajectorySequenceAsync(traj4);

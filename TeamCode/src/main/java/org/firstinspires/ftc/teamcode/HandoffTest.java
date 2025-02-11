@@ -45,8 +45,10 @@ public class HandoffTest extends LinearOpMode {
              telemetry.addData("x", poseEstimate.getX());
              telemetry.addData("y", poseEstimate.getY());
              telemetry.addData("heading", poseEstimate.getHeading());
-             int currentPosition = intanke.liftMotor.getCurrentPosition();
+             int currentPosition = lift.liftMotor.getCurrentPosition();
              telemetry.addData("motor position:", currentPosition);
+             int currentPositionTwo = intanke.liftMotor.getCurrentPosition();
+             telemetry.addData("front motor position:", currentPositionTwo);
              telemetry.update();
 
              telemetry.update();
@@ -83,10 +85,10 @@ public class HandoffTest extends LinearOpMode {
                  lift.bucketDump();
              }
              if(gamepad2.dpad_left){
-                 intanke.clawUp();
+                // intanke.clawUp();
              }
              if(gamepad2.dpad_right){
-                 intanke.clawDown();
+               //  intanke.clawDown();
              }
             /* if(gamepad2.left_bumper){
                  extender.pushClawIn();

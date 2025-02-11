@@ -13,14 +13,14 @@ public class Lift {
     DcMotorEx liftMotor;
     Servo bucketServo;
     DcMotor hangMotor;
-    public static int maxTicks = 5800;
+    public static int maxTicks = 4300;
     public static double radius = 3.5;
     public static double PositionDump = .8;
     public static double PositionRecieve = .2;
     public static double P = 15;
     public static double I = 1;
-    public static double D = 10;
-    public static double F = 0;
+    public static double D = 1;
+    public static double F = 1;
     public static int liftUpSpeed = 550;
     public static int liftDownSpeed = 550;
 
@@ -66,6 +66,9 @@ public class Lift {
     }
     public void hang(){
         this.hangMotor. setTargetPosition(90);
+    }
+    public void hangZero(){
+        this.hangMotor.setTargetPosition(0);
     }
     public void update(){
         PIDFCoefficients coefficients = new PIDFCoefficients(P,I,D,F);

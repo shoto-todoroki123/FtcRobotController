@@ -13,13 +13,15 @@ public class Intanke {
     public DcMotorEx liftMotor;
     Servo clawServo;
     Servo clawWrist;
-    public static int maxTicks = 200;
+    public static int maxTicks = 50;
     public static double mg = 10;
    public static double verticalOffset = 59;
     public static int clawGrab = -120;
     public static int clawFold = 15;
-    //public static int Wristturned = 90;
-  //  public static int Wristzero = 0;
+    public static int wristturned = 90;
+    public static int wristzero = 0;
+
+
     public boolean newTargetPosition = true;
    // public double jigglePower = 1;
     public double p = 25;
@@ -29,19 +31,24 @@ public class Intanke {
         this.clawServo = hardwareMap.get(Servo.class, "clawServo");
        //
         //
-        // this.clawWrist = hardwareMap.get(Servo.class, "wristServo");
+         this.clawWrist = hardwareMap.get(Servo.class, "wristServo");
         this.reset();
     }
 
     public void reset() {
         this.liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        this.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        this.setClawAngle(0);
-        this.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.liftMotor.setPower(1);
+        //this.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //this.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //this.setClawAngle(0);
+        this.clawServo(DcMotor.RunMode.RUN_TO_POSITION);
+        //this.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+       // this.liftMotor.setPower(.5);
         //this.jigglePower = 1;
     }
+
+    private void clawServo(DcMotor.RunMode runMode) {
+    }
+
 
     public void setClawAngle(int ticks) {
         this.liftMotor.setTargetPosition(Math.min(maxTicks, Math.max(0, ticks)));
@@ -77,23 +84,29 @@ public class Intanke {
     public void intakeStop(){
         this.clawServo.setPosition(.5);
     }
-    public void clawUp(){
-        this.liftMotor.setTargetPosition(clawFold);
+    /*public void clawUp(){
+        this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()));
         newTargetPosition = true;
     }
     public void clawDown(){
-        this.liftMotor.setTargetPosition(clawGrab);
+        this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()));
         newTargetPosition = true;
+    }*/
+    public void clawLift(double power){
+       this.liftMotor.setPower(power);
     }
    // public void jiggleEncoderTicks(){
      //  jigglePower = jigglePower*-1;
 
     //}
-   // public void wristTurned(){
-    //    this.clawWrist.setPosition(1);
-    //}
-    //public void wristZero(){
-      //  this.clawWrist.setPosition(0);
-   // }
+    public void wristTurned(){
+        this.clawWrist.setPosition(1);
+    }
+    public void wristHalfTurned(){
+        this.clawWrist.setPosition(0.5);
+    }
+    public void wristZero(){
+        this.clawWrist.setPosition(0);
+    }
 
 }

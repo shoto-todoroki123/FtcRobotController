@@ -44,10 +44,10 @@ public class TeleOpTesting extends LinearOpMode {
              telemetry.addData("x", poseEstimate.getX());
              telemetry.addData("y", poseEstimate.getY());
              telemetry.addData("heading", poseEstimate.getHeading());
-             int currentPosition = intanke.liftMotor.getCurrentPosition();
-             telemetry.addData("motor position:", currentPosition);
-             int current = extender.double_lift.getCurrentPosition();
-             telemetry.addData("motor position:", current);
+             //int currentPosition = intanke.liftMotor.getCurrentPosition();
+             //telemetry.addData("motor position:", currentPosition);
+             int current = lift.liftMotor.getCurrentPosition();
+             telemetry.addData("motor position two:", current);
              telemetry.update();
              if (clawIsForward) {
                  drive.setWeightedDrivePower(
@@ -78,7 +78,7 @@ public class TeleOpTesting extends LinearOpMode {
              }
             // if (gamepad2.right_trigger>0) {
               //   intanke.intakeIn();
-             if (gamepad2.left_trigger>0){
+             if (gamepad2.left_bumper){
                  intanke.intakeOut();
              }else {
                  intanke.intakeStop();
@@ -89,12 +89,10 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.x){
                  lift.bucketDump();
              }
-             if(gamepad2.left_bumper){
-                 intanke.clawUp();
-             }
-             if(gamepad2.right_bumper){
-                 intanke.clawDown();
-             }
+
+            intanke.clawLift(gamepad2.right_trigger-gamepad2.left_trigger);
+
+
              if(gamepad2.right_stick_y<0){
                  extender.pushClawIn();
              }
@@ -104,6 +102,9 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad2.y){
                  lift.hang();
              }
+             if(gamepad2.a){
+                 lift.hangZero();
+             }
              //if(gamepad2.left_trigger>.5 && !previousLT){
               //   intanke.jiggleEncoderTicks();
             // }
@@ -111,12 +112,15 @@ public class TeleOpTesting extends LinearOpMode {
              //if(gamepad2.right_trigger>.5){
              //    intanke.reset();
              //}
-            // if(gamepad2.left_trigger>.5){
-              //   intanke.wristZero();
-             //}
-             //if(gamepad2.right_trigger>.5){
-               //  intanke.wristTurned();
-             //}
+            if(gamepad2.dpad_right){
+                intanke.wristZero();
+            }
+             if(gamepad2.dpad_left){
+                 intanke.wristTurned();
+             }
+             if(gamepad2.dpad_up){
+                 intanke.wristHalfTurned();
+             }
              intanke.update();
              lift.update();
              drive.update();

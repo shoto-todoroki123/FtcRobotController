@@ -40,14 +40,14 @@ public class DONTUSETHISAUTO extends LinearOpMode {
                  .waitSeconds(1)
                  .setReversed(false)
                  .addTemporalMarker( () ->{
-                     intanke.clawDown();
+                     //intanke.clawDown();
                      intanke.intakeIn();
                      lift.setLiftPosition(0);
                      lift.bucketRecieve();
                  })
                  .splineToLinearHeading(new Pose2d(49.5,41,Math.toRadians(270)),Math.toRadians(90))
                  .addTemporalMarker( () ->{
-                     intanke.clawUp();
+                    // intanke.clawUp();
                  })
                  .setReversed(true)
                  .splineToLinearHeading(new Pose2d(48.85,38.45 ,Math.toRadians(-90.)), Math.toRadians(270))
@@ -68,13 +68,13 @@ public class DONTUSETHISAUTO extends LinearOpMode {
                      lift.setLiftPosition(0);
                  })
                  .addTemporalMarker(()->{
-                     intanke.clawDown();
+                     //intanke.clawDown();
                      intanke.intakeIn();
                  })
                  .setReversed(true)
                  .splineToLinearHeading(new Pose2d(60.62, 59.44, Math.toRadians(-90)), Math.toRadians(270))
                  .addTemporalMarker(()->{
-                     intanke.clawUp();
+                    // intanke.clawUp();
                  })
                  .waitSeconds(.25)
                  .addTemporalMarker(()->{
@@ -95,13 +95,13 @@ public class DONTUSETHISAUTO extends LinearOpMode {
                      lift.setLiftPosition(0);
                  })
                  .addTemporalMarker(()->{
-                     intanke.clawDown();
+                     //intanke.clawDown();
                      intanke.intakeIn();
                  })
                  .setReversed(false)
                  .splineToLinearHeading(new Pose2d(67.29, 39.43,Math.toRadians(-90)), Math.toRadians(270))
                  .addTemporalMarker(()->{
-                     intanke.clawUp();
+                    // intanke.clawUp();
                  })
                  .waitSeconds(.25)
                  .addTemporalMarker(()->{
@@ -123,7 +123,7 @@ public class DONTUSETHISAUTO extends LinearOpMode {
                      lift.setLiftPosition(0);
                  })
                  .addTemporalMarker(()->{
-                     intanke.clawDown();
+                    // intanke.clawDown();
                      intanke.intakeIn();
                  })
                  .setReversed(false)
