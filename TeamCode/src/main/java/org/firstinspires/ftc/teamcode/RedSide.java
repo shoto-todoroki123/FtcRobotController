@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.ClawExtender;
+import org.firstinspires.ftc.teamcode.Intanke;
+import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
@@ -39,15 +42,17 @@ public class RedSide extends LinearOpMode {
                     lift.setLiftHeight(4200);
                     lift.bucketRecieve();
                 })*/
-               .lineToLinearHeading(new Pose2d(72,0, Math.toRadians(90)))
+
+/*import com.acmerobotics.roadrunner.geometry.Pose2d;.lineToLinearHeading(new Pose2d(72,0,Math.toRadians(90)))
                 //.lineToLinearHeading(new Pose2d(4,-40, Math.toRadians(90)))
                /*.addTemporalMarker(()->{
                     lift.bucketDump();
                     lift.setLiftHeight(0);
                 })*/
-                .waitSeconds(1)
+
+/*import com.acmerobotics.roadrunner.geometry.Pose2d;.waitSeconds(1)
                 .setReversed(false)
-                .lineToLinearHeading(new Pose2d(0,72, Math.toRadians(-90)))
+                .lineToLinearHeading(new Pose2d(0,72,Math.toRadians(-90)))
                //.lineToLinearHeading(new Pose2d(10,-43, Math.toRadians(90)))
                /* .lineToLinearHeading(new Pose2d(49.48,-54.29, Math.toRadians(90)))
                 .lineToLinearHeading(new Pose2d(59.57,-14.68, Math.toRadians(90)))
@@ -55,7 +60,7 @@ public class RedSide extends LinearOpMode {
                 .splineTo(new Vector2d(62.83,-14.37), Math.toRadians(90))
                 .splineTo(new Vector2d(62.83,-45.49), Math.toRadians(90))*/
 
-                .build();
+/*import com.acmerobotics.roadrunner.geometry.Pose2d;.build();
         waitForStart();
         drive.followTrajectorySequenceAsync(traj1);
 
@@ -74,25 +79,31 @@ public class RedSide extends LinearOpMode {
         }
     }
 
-}
+}*/
 
-/*package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
+import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.ClawExtender;
+import org.firstinspires.ftc.teamcode.Intanke;
+import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "BlueSideFrontAutonomousTesting")
-public class BlueSideFrontAutonomousTesting extends LinearOpMode {
+@Autonomous(name = "RedSideBackAuto")
+public class RedSide extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
     private SampleMecanumDrive drive = null;
     private ClawExtender extender = null;
-    private TrajectorySequence traj1;
+    //private Trajectory traj1;
+
 
 
 
@@ -101,18 +112,29 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
         intanke = new Intanke(hardwareMap);
         lift =  new Lift(hardwareMap);
         drive = new SampleMecanumDrive(hardwareMap);
-        drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
+       // drive.setPoseEstimate(new Pose2d(20,-53,Math.toRadians(90)));
+        Pose2d startPose = new Pose2d(0, 0, 0);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extender = new ClawExtender(hardwareMap);
 
+        drive.setPoseEstimate(startPose);
 
-        traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                .addTemporalMarker( ()->{
-                    lift.setLiftPosition(503);
+        Trajectory traj1 = drive.trajectoryBuilder(startPose)
+                .strafeLeft(8)
+
+                .build();
+        Trajectory traj2 = drive.trajectoryBuilder(startPose)
+                .forward(25)
+                .build();
+        Trajectory traj3 = drive.trajectoryBuilder(startPose)
+                .back(20)
+                .build();
+                /*.addTemporalMarker( ()->{
+                    lift.setLiftPosition(5);
                     lift.bucketRecieve();
-                })
-                .lineToLinearHeading(new Pose2d(0,35, Math.toRadians(-90)))
-                .addTemporalMarker(()->{
+                })*/
+               // .lineToLinearHeading(new Pose2d(0,-35, Math.toRadians(90)))
+                /*.addTemporalMarker(()->{
                     lift.bucketDump();
                 })
                 .waitSeconds(1)
@@ -122,9 +144,31 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
                     intanke.intakeIn();
                     lift.setLiftPosition(0);
                     lift.bucketRecieve();
-                })
-                .splineToLinearHeading(new Pose2d(49.5,41,Math.toRadians(90.1)),Math.toRadians(270))
-                .addTemporalMarker( () ->{
+                })*/
+                //.setReversed(false)
+                //.strafeLeft(15)
+                //.waitSeconds(.1
+                /* .addTrajectory(() ->{
+
+                 })
+                .forward(15)*/
+
+                /*.back(10)
+                .strafeRight(20)*/
+               /* .forward(20)
+                .strafeRight(15)
+                .back(48)
+                .forward(20)
+                .strafeRight(15)
+                .back(48)
+                .forward(20)
+                .strafeRight(15)
+                .back(48)
+                .strafeLeft(24)
+                .back(5)*/
+               // .lineToLinearHeading(new Pose2d(-25,-45, Math.toRadians(90)))
+                //.splineToLinearHeading(new Pose2d(48.5,-14.59,Math.toRadians(90)),Math.toRadians(270))
+                /*.addTemporalMarker( () ->{
                     intanke.clawUp();
                 })
                 .setReversed(false)
@@ -205,20 +249,25 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
                     intanke.intakeIn();
                 })
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90))Math.toRadians(270))
-                .build();
+                .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90))Math.toRadians(270))*/
 
         waitForStart();
 
-        drive.followTrajectorySequenceAsync(traj1);
+        drive.followTrajectory(traj1);
+        drive.waitForIdle();
+        drive.followTrajectory(traj2);
+        drive.waitForIdle();
+        drive.followTrajectory(traj3);
+
+
 
         while (opModeIsActive()) {
 
-            Pose2d poseEstimate = drive.getPoseEstimate();
+           /* Pose2d poseEstimate = drive.getPoseEstimate();
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
-            telemetry.update();
+            telemetry.update();*/
 
             intanke.update();
             drive.update();
@@ -227,4 +276,4 @@ public class BlueSideFrontAutonomousTesting extends LinearOpMode {
     }
 
 }
-*/
+
