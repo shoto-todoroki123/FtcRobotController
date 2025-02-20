@@ -15,8 +15,8 @@ public class Lift {
     DcMotor hangMotor;
     public static int maxTicks = 4300;
     public static double radius = 3.5;
-    public static double PositionDump = .8;
-    public static double PositionRecieve = .2;
+    public static double PositionDump = 1;
+    public static double PositionRecieve = .5;
     public static double P = 15;
     public static double I = 1;
     public static double D = 1;

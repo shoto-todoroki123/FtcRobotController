@@ -76,7 +76,7 @@ public class Intanke {
        // }
     }
     public void intakeIn(){
-        this.clawServo.setPosition(0.6);
+        this.clawServo.setPosition(0.5);
     }
     public void intakeOut(){
         this.clawServo.setPosition(0.3);
