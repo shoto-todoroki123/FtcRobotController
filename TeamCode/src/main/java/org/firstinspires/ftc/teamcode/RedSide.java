@@ -247,7 +247,7 @@ public class RedSide extends LinearOpMode {
                 .addTemporalMarker(()->{
                     intanke.clawDown();
                     intanke.intakeIn();
-                })
+               })
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90))Math.toRadians(270))*/
 
