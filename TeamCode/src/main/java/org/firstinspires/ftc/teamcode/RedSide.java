@@ -123,10 +123,10 @@ public class RedSide extends LinearOpMode {
                 .strafeLeft(8)
 
                 .build();
-        Trajectory traj2 = drive.trajectoryBuilder(startPose)
+        Trajectory traj2 = drive.trajectoryBuilder(traj1.end())
                 .forward(25)
                 .build();
-        Trajectory traj3 = drive.trajectoryBuilder(startPose)
+        Trajectory traj3 = drive.trajectoryBuilder(traj2.end())
                 .back(20)
                 .build();
                 /*.addTemporalMarker( ()->{
