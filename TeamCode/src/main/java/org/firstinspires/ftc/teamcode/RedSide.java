@@ -84,7 +84,6 @@ public class RedSide extends LinearOpMode {
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.trajectory.TemporalMarker;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -108,38 +107,36 @@ public class RedSide extends LinearOpMode {
 
 
 
-
     @Override
     public void runOpMode(){
         intanke = new Intanke(hardwareMap);
         lift =  new Lift(hardwareMap);
         drive = new SampleMecanumDrive(hardwareMap);
-        // drive.setPoseEstimate(new Pose2d(20,-53,Math.toRadians(90)));
-        Pose2d startPose = new Pose2d(0, 0, -90);
+       // drive.setPoseEstimate(new Pose2d(20,-53,Math.toRadians(90)));
+        Pose2d startPose = new Pose2d(0, 0, 0);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extender = new ClawExtender(hardwareMap);
 
         drive.setPoseEstimate(startPose);
 
-        TrajectorySequence traj1 = drive.trajectorySequenceBuilder(startPose)
-                .addTemporalMarker(() -> lift.setLiftPosition(300))
+        Trajectory traj1 = drive.trajectoryBuilder(startPose)
                 .strafeLeft(8)
+
                 .build();
         Trajectory traj2 = drive.trajectoryBuilder(startPose)
                 .forward(25)
                 .build();
-       /* Trajectory traj3 = drive.trajectoryBuilder(startPose)
-                .strafeLeft(3)
-                .build();*/
-       /* Trajectory traj4 = drive.trajectoryBuilder(startPose)
+        Trajectory traj3 = drive.trajectoryBuilder(startPose)
                 .back(20)
-                .build();*/
+                .build();
                 /*.addTemporalMarker( ()->{
                     lift.setLiftPosition(5);
                     lift.bucketRecieve();
                 })*/
                // .lineToLinearHeading(new Pose2d(0,-35, Math.toRadians(90)))
-                /*
+                /*.addTemporalMarker(()->{
+                    lift.bucketDump();
+                })
                 .waitSeconds(1)
                 .setReversed(true)
                 .addTemporalMarker( () ->{
@@ -256,13 +253,11 @@ public class RedSide extends LinearOpMode {
 
         waitForStart();
 
-        drive.followTrajectorySequence(traj1);
+        drive.followTrajectory(traj1);
         drive.waitForIdle();
         drive.followTrajectory(traj2);
         drive.waitForIdle();
-        //drive.followTrajectory(traj3);
-        //drive.waitForIdle();
-       // drive.followTrajectory(traj4);
+        drive.followTrajectory(traj3);
 
 
 
