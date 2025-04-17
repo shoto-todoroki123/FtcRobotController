@@ -96,7 +96,7 @@ import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "RedSideBackAuto")
+/*@Autonomous(name = "RedSideBackAuto")
 public class RedSide extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
@@ -251,7 +251,7 @@ public class RedSide extends LinearOpMode {
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-63.17,63.17, Math.toRadians(-90))Math.toRadians(270))*/
 
-        waitForStart();
+       /* waitForStart();
 
         drive.followTrajectory(traj1);
         drive.waitForIdle();
@@ -269,11 +269,11 @@ public class RedSide extends LinearOpMode {
             telemetry.addData("heading", poseEstimate.getHeading());
             telemetry.update();*/
 
-            intanke.update();
+           /* intanke.update();
             drive.update();
             lift.update();
         }
     }
 
-}
+}*/
 
