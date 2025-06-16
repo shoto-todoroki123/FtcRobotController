@@ -90,7 +90,7 @@ public class TeleOpTesting extends LinearOpMode {
                  lift.bucketDump();
              }
 
-            intanke.clawLift(gamepad2.right_trigger-gamepad2.left_trigger);
+            //intanke.clawLift(gamepad2.right_trigger-gamepad2.left_trigger);
 
 
              if(gamepad2.right_stick_y<0){

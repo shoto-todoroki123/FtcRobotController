@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.Intanke;
+import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 
@@ -47,7 +49,7 @@ public class HandoffTest extends LinearOpMode {
              telemetry.addData("heading", poseEstimate.getHeading());
              int currentPosition = lift.liftMotor.getCurrentPosition();
              telemetry.addData("motor position:", currentPosition);
-             int currentPositionTwo = intanke.liftMotor.getCurrentPosition();
+             //int currentPositionTwo = intanke.liftMotor.getCurrentPosition();
              telemetry.addData("front motor position:", currentPositionTwo);
              telemetry.update();
 
@@ -96,9 +98,9 @@ public class HandoffTest extends LinearOpMode {
              if(gamepad2.right_bumper){
                  extender.pushClawOut();
              }*/
-             intanke.update();
+            /* intanke.update();
              drive.update();
          }
     }
 
-}
+}*/
