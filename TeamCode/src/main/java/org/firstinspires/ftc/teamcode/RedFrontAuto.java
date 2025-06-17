@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -50,7 +50,7 @@ public class RedFrontAuto extends LinearOpMode {
             lift.update();
         }
     }
-}
+}*/
 
 
 

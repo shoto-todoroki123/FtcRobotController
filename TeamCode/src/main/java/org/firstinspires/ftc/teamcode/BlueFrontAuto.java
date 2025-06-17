@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 @Autonomous(name = "BlueFrontAuto")
 public class BlueFrontAuto extends LinearOpMode {
     private Intanke intanke = null;
-    private Lift lift = null;
+    //private Lift lift = null;
     private SampleMecanumDrive drive = null;
     private ClawExtender extender = null;
     private TrajectorySequence traj1;
@@ -21,7 +21,7 @@ public class BlueFrontAuto extends LinearOpMode {
     @Override
     public void runOpMode(){
         intanke = new Intanke(hardwareMap);
-        lift =  new Lift(hardwareMap);
+    //    lift =  new Lift(hardwareMap);
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -45,7 +45,7 @@ public class BlueFrontAuto extends LinearOpMode {
 
             intanke.update();
             drive.update();
-            lift.update();
+            //lift.update();
         }
     }
 

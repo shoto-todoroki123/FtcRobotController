@@ -1,4 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+
+/*package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,7 +15,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Lift {
     DcMotorEx liftMotor;
     Servo bucketServo;
-    DcMotor hangMotor;
+    //DcMotor hangMotor;
     public static int maxTicks = 4300;
     public static double radius = 3.5;
     public static double PositionDump = 0.5;
@@ -28,7 +31,7 @@ public class Lift {
     public Lift(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "liftMotor");
         this.bucketServo = hardwareMap.get(Servo.class, "bucketServo");
-        this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
+        //this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
         this.reset();
     }
 
@@ -64,14 +67,14 @@ public class Lift {
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
 
     }
-    public void hang(){
+  /*  public void hang(){
         this.hangMotor. setTargetPosition(90);
     }
     public void hangZero(){
         this.hangMotor.setTargetPosition(0);
-    }
-    public void update(){
+    }*/
+   /* public void update(){
         PIDFCoefficients coefficients = new PIDFCoefficients(P,I,D,F);
         this.liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coefficients);
     }
-}
+}*/

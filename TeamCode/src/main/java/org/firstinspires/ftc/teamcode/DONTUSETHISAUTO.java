@@ -1,34 +1,36 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.ClawExtender;
+import org.firstinspires.ftc.teamcode.Intanke;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous(name = "DONTUSETHISAUTO")
 public class DONTUSETHISAUTO extends LinearOpMode {
     private Intanke intanke = null;
-    private Lift lift = null;
+    //private Lift lift = null;
     private SampleMecanumDrive drive = null;
     private ClawExtender extender = null;
-    private TrajectorySequence traj1;
+    private TrajectorySequence traj1;*/
 
 
 
-    @Override
+  /*  @Override
     public void runOpMode(){
         intanke = new Intanke(hardwareMap);
-        lift =  new Lift(hardwareMap);
+       // lift =  new Lift(hardwareMap);
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setPoseEstimate(new Pose2d(41.25,63.5,Math.toRadians(-90)));
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        extender = new ClawExtender(hardwareMap);
+        extender = new ClawExtender(hardwareMap);*/
 
 
-         traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())
+        /* traj1 =  drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                  .addTemporalMarker( ()->{
                      lift.setLiftHeight(35);
                      lift.bucketRecieve();
@@ -148,4 +150,4 @@ public class DONTUSETHISAUTO extends LinearOpMode {
         }
     }
 
-}
+}*/

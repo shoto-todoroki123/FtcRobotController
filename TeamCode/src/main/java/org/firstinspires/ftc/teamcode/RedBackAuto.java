@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@Autonomous(name = "RedBackAuto")
+/*@Autonomous(name = "RedBackAuto")
 public class RedBackAuto extends LinearOpMode {
     private Intanke intanke = null;
     private Lift lift = null;
@@ -47,6 +47,6 @@ public class RedBackAuto extends LinearOpMode {
             lift.update();
         }
     }
-}
+}*/
 
 
