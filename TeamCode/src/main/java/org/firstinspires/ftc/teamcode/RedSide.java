@@ -92,9 +92,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.ClawExtender;
 import org.firstinspires.ftc.teamcode.Intanke;
-import org.firstinspires.ftc.teamcode.Lift;
+/*import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;*/
 
 /*@Autonomous(name = "RedSideBackAuto")
 public class RedSide extends LinearOpMode {

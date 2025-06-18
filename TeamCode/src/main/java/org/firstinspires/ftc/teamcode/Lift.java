@@ -1,7 +1,7 @@
-import com.qualcomm.robotcore.hardware.DcMotor;
+/*import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
-/*package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -66,7 +66,7 @@ public class Lift {
     public void moveDown(){
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
 
-    }
+    }*/
   /*  public void hang(){
         this.hangMotor. setTargetPosition(90);
     }
