@@ -1,8 +1,7 @@
-/*import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -14,15 +13,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Lift {
     DcMotorEx liftMotor;
-    Servo bucketServo;
-    //DcMotor hangMotor;
-    public static int maxTicks = 4300;
+   // Servo bucketServo;
+    DcMotor hangMotor;
+    public static int maxTicks = 3000;
     public static double radius = 3.5;
     public static double PositionDump = 0.5;
     public static double PositionRecieve = 0;
-    public static double P = 15;
-    public static double I = 1;
-    public static double D = 1;
+    public static double P = 0;
+    public static double I = 5;
+    public static double D = 0;
     public static double F = 1;
     public static int liftUpSpeed = 550;
     public static int liftDownSpeed = 550;
@@ -30,8 +29,8 @@ public class Lift {
 
     public Lift(HardwareMap hardwareMap) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "liftMotor");
-        this.bucketServo = hardwareMap.get(Servo.class, "bucketServo");
-        //this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
+        //this.bucketServo = hardwareMap.get(Servo.class, "bucketServo");
+        this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
         this.reset();
     }
 
@@ -41,6 +40,7 @@ public class Lift {
         this.setLiftHeight(0);
         this.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         this.liftMotor.setPower(1);
+        this.hangMotor.setPower(.05);
     }
 
     public void setLiftHeight(double height) {
@@ -54,27 +54,27 @@ public class Lift {
         this.liftMotor.setTargetPosition(Math.min(maxTicks, Math.max(0, ticks)));
     }
 
-    public void bucketRecieve(){
+    /*public void bucketRecieve(){
         this.bucketServo.setPosition(PositionRecieve);
     }
     public void bucketDump() {
         this.bucketServo.setPosition(PositionDump);
-    }
+    }*/
     public void moveUp(){
      this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()+liftUpSpeed));
     }
     public void moveDown(){
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
 
-    }*/
-  /*  public void hang(){
+    }
+    public void hang(){
         this.hangMotor. setTargetPosition(90);
     }
     public void hangZero(){
         this.hangMotor.setTargetPosition(0);
-    }*/
-   /* public void update(){
+    }
+    public void update(){
         PIDFCoefficients coefficients = new PIDFCoefficients(P,I,D,F);
         this.liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, coefficients);
     }
-}*/
+}

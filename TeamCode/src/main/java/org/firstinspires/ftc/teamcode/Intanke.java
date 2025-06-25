@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
 public class Intanke {
-   // public DcMotorEx liftMotor;
+    Servo liftServo;
     Servo clawServo;
     Servo clawWrist;
     public static int maxTicks = 50;
@@ -27,11 +27,9 @@ public class Intanke {
     public double p = 25;
     public double i = 0;
     public Intanke(HardwareMap hardwareMap) {
-        //this.liftMotor = hardwareMap.get(DcMotorEx.class, "lift");
+        this.liftServo = hardwareMap.get(Servo.class, "lift");
         this.clawServo = hardwareMap.get(Servo.class, "clawServo");
-       //
-        //
-         this.clawWrist = hardwareMap.get(Servo.class, "wristServo");
+        this.clawWrist = hardwareMap.get(Servo.class, "wristServo");
         this.reset();
     }
 
@@ -39,15 +37,14 @@ public class Intanke {
         //this.liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         //this.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //this.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //this.setClawAngle(0);
-        this.clawServo(DcMotor.RunMode.RUN_TO_POSITION);
+       // this.setClawAngle(0);
+       // this.clawServo(DcMotor.RunMode.RUN_TO_POSITION);
         //this.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
        // this.liftMotor.setPower(.5);
         //this.jigglePower = 1;
     }
 
-    private void clawServo(DcMotor.RunMode runMode) {
-    }
+
 
 
    // public void setClawAngle(int ticks) {
@@ -76,10 +73,10 @@ public class Intanke {
        // }
     }
     public void intakeIn(){
-        this.clawServo.setPosition(0.5);
+        this.clawServo.setPosition(.65);
     }
     public void intakeOut(){
-        this.clawServo.setPosition(0.3);
+        this.clawServo.setPosition(0.35);
     }
     public void intakeStop(){
         this.clawServo.setPosition(.5);
@@ -100,13 +97,22 @@ public class Intanke {
 
     //}
     public void wristTurned(){
-        this.clawWrist.setPosition(1);
+        this.clawWrist.setPosition(.1);
     }
     public void wristHalfTurned(){
         this.clawWrist.setPosition(0.5);
     }
     public void wristZero(){
-        this.clawWrist.setPosition(0);
+        this.clawWrist.setPosition(0.3);
+    }
+    public void wristotherturn(){
+        this.clawWrist.setPosition(.6);
+    }
+    public void clawUp(){
+        this.liftServo.setPosition(1);
+    }
+    public void clawDown(){
+        this.liftServo.setPosition(0);
     }
 
 }
