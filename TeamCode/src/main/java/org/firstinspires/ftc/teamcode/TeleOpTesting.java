@@ -45,8 +45,8 @@ public class TeleOpTesting extends LinearOpMode {
              telemetry.addData("heading", poseEstimate.getHeading());
              //int currentPosition = intanke.liftMotor.getCurrentPosition();
              //telemetry.addData("motor position:", currentPosition);
-             //int curren= lift.liftMotor.getCurrentPosition();
-            // telemetry.addData("motor position two:", curren);
+             int curren= lift.liftMotor.getCurrentPosition();
+             telemetry.addData("motor position two:", curren);
              int currentPosition = ClawExtender.Arm1.getCurrentPosition();
              telemetry.addData("Arm1:",currentPosition );
              int Position = ClawExtender.Arm2.getCurrentPosition();
@@ -57,17 +57,17 @@ public class TeleOpTesting extends LinearOpMode {
              if (clawIsForward) {
                  drive.setWeightedDrivePower(
                          new Pose2d(
-                                 gamepad1.left_stick_y,
+                                 -gamepad1.left_stick_y,
                                  gamepad1.left_stick_x,
-                                 -gamepad1.right_stick_x
+                                 gamepad1.right_stick_x
                          )
                  );
              }else{
                  drive.setWeightedDrivePower(
                          new Pose2d(
-                                 -gamepad1.left_stick_y,
-                                 -gamepad1.left_stick_x,
-                                 -gamepad1.right_stick_x
+                                 gamepad1.left_stick_y,
+                                - gamepad1.left_stick_x,
+                                 gamepad1.right_stick_x
                          )
                  );
              }
@@ -75,7 +75,7 @@ public class TeleOpTesting extends LinearOpMode {
                 clawIsForward = !clawIsForward;
              }
 
-           if(gamepad2.left_stick_y<-.5){
+           if(gamepad2.left_stick_y<-.5/* && extender.Arm2.getCurrentPosition()<30*/){
                  lift.moveUp();
              }
              if(gamepad2.left_stick_y>.5){
@@ -92,6 +92,9 @@ public class TeleOpTesting extends LinearOpMode {
              }
              if(gamepad2.right_stick_y<0){
                  extender.pushClawOut();
+             }
+             if(gamepad2.dpad_down){
+                 extender.armDown();
              }
             if(gamepad2.b){
                 intanke.wristZero();
@@ -117,6 +120,9 @@ public class TeleOpTesting extends LinearOpMode {
              if(gamepad1.left_bumper){
                  extender.overBlocks();
              }
+            /* if(gamepad2.dpad_right){
+                 lift.makeliftmax();
+             }*/
              intanke.update();
             // lift.update();
              drive.update();

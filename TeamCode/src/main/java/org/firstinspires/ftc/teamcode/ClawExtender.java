@@ -15,8 +15,8 @@ public class ClawExtender {
 
     public static int min1 = 0;
     public static int max1 = 370;
-    public static int min2 = 0;
-    public static int max2 = 380;
+    public static int min2 = 20;
+    public static int max2 = 550;
     public static double verticalOffset = 59;
     public static double P1 = 1;
     public static double I1 = 1;
@@ -36,6 +36,7 @@ public class ClawExtender {
         this.reset();
     }
     public void pushClawOut(){
+        this.Arm2.setPower(-.4);
         this.Arm1.setTargetPosition(max1);
         this.Arm2.setTargetPosition(max2);
     }
@@ -60,6 +61,10 @@ public class ClawExtender {
         this.Arm1.setTargetPosition(min1);
         this.Arm2.setTargetPosition(min2);
     }
+    public void armDown() {
+        this.Arm2.setTargetPosition(min2);
+        this.Arm2.setPower(0);
+    }
 
 
     public void reset() {
@@ -67,13 +72,13 @@ public class ClawExtender {
         this.Arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.Arm1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.Arm1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.Arm1.setPower(.2);
-        this.Arm2.setTargetPosition(0);
+        this.Arm1.setPower(.4);
+        this.Arm2.setTargetPosition(20);
         this.Arm1.setDirection(DcMotorSimple.Direction.REVERSE);
         this.Arm2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.Arm2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.Arm2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.Arm2.setPower(-.2);
+        this.Arm2.setPower(-.4);
      }
 
 

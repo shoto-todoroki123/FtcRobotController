@@ -12,10 +12,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 
 public class Lift {
+    private ClawExtender extender = null;
     DcMotorEx liftMotor;
    // Servo bucketServo;
     DcMotor hangMotor;
     public static int maxTicks = 3000;
+    public static int max = 2000;
+    public static int legalmax = 2400;
+    public static int halfmin = 1300;
+    public static int minTicks = 0;
     public static double radius = 3.5;
     public static double PositionDump = 0.5;
     public static double PositionRecieve = 0;
@@ -53,6 +58,21 @@ public class Lift {
         int ticks = (int)(liftPosition*maxTicks);
         this.liftMotor.setTargetPosition(Math.min(maxTicks, Math.max(0, ticks)));
     }
+    public void makeliftmax(){
+        this.liftMotor.setTargetPosition(max);
+    }
+    public void makeliftmin(){
+        this.liftMotor.setTargetPosition(minTicks);
+    }
+    public void half(){
+        this.liftMotor.setTargetPosition(halfmin);
+    }
+    public void legal(){
+        this.liftMotor.setTargetPosition(legalmax);
+
+    }
+
+
 
     /*public void bucketRecieve(){
         this.bucketServo.setPosition(PositionRecieve);
