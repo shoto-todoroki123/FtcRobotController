@@ -53,9 +53,6 @@ public class TeleOpTesting extends LinearOpMode {
              telemetry.addData("Arm2:",Position );
              int current = lift.hangMotor.getCurrentPosition();
              telemetry.addData("hanger", current);
-             telemetry.addData("booleanposition", extender.extenderIsUp());
-             telemetry.addData("booleanposition2", lift.isLiftOut());
-
              telemetry.update();
              if (clawIsForward) {
                  drive.setWeightedDrivePower(
@@ -81,7 +78,7 @@ public class TeleOpTesting extends LinearOpMode {
            if(gamepad2.left_stick_y<-.5/* && extender.Arm2.getCurrentPosition()<30*/){
                  lift.moveUp();
              }
-             if(gamepad2.left_stick_y>.5 && !extender.extenderIsUp()){
+             if(gamepad2.left_stick_y>.5){
                  lift.moveDown ();
              }
              if (gamepad2.right_trigger>0) {
@@ -90,10 +87,10 @@ public class TeleOpTesting extends LinearOpMode {
              if (gamepad2.left_trigger>0){
                  intanke.intakeOut();
              }
-             if(gamepad2.right_stick_y>0 && !lift.isLiftOut()){
+             if(gamepad2.right_stick_y>0 && lift.Up != true){
                  extender.pushClawIn();
              }
-             if(gamepad2.right_stick_y<0){
+             if(gamepad2.right_stick_y<0 && lift.Up != true){
                  extender.pushClawOut();
              }
              if(gamepad2.dpad_down){

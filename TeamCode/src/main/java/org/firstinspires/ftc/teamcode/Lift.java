@@ -16,7 +16,7 @@ public class Lift {
     DcMotorEx liftMotor;
    // Servo bucketServo;
     DcMotor hangMotor;
-    public static int maxTicks = -3000;
+    public static int maxTicks = 3000;
     public static int max = 2000;
     public static int legalmax = 2400;
     public static int halfmin = 1300;
@@ -30,7 +30,7 @@ public class Lift {
     public static double F = 1;
     public static int liftUpSpeed = 550;
     public static int liftDownSpeed = 550;
-    Boolean liftOut = false;
+    boolean Up = false;
 
 
     public Lift(HardwareMap hardwareMap) {
@@ -72,9 +72,6 @@ public class Lift {
         this.liftMotor.setTargetPosition(legalmax);
 
     }
-    public boolean isLiftOut(){
-      return liftOut;
-    }
 
 
 
@@ -86,12 +83,11 @@ public class Lift {
     }*/
     public void moveUp(){
      this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()+liftUpSpeed));
-     liftOut = true;
+     Up = true;
     }
     public void moveDown(){
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
-        liftOut = false;
-
+        Up = false;
     }
     public void hang(){
         this.hangMotor. setTargetPosition(90);
