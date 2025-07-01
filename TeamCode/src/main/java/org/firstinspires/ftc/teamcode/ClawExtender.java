@@ -26,6 +26,7 @@ public class ClawExtender {
     public static double I2 = 1;
     public static double D2 = 100;
     public static double F2 = 1;
+    boolean extenderUp = false;
 
 
 
@@ -39,6 +40,7 @@ public class ClawExtender {
         this.Arm2.setPower(-.4);
         this.Arm1.setTargetPosition(max1);
         this.Arm2.setTargetPosition(max2);
+        extenderUp = false;
     }
     public void pushClawIn() /*throws InterruptedException*/ {
        /* while(Arm1.getCurrentPosition()!=60 &&Arm2.getCurrentPosition()!=60) {
@@ -47,8 +49,12 @@ public class ClawExtender {
         }*/
             this.Arm1.setTargetPosition(min1+15);
             this.Arm2.setTargetPosition(min2+15);
+            extenderUp = true;
 
 
+    }
+    public boolean extenderIsUp(){
+        return extenderUp;
     }
 
     public void hangyPart() {
