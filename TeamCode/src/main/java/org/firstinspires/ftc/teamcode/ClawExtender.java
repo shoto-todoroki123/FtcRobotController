@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 public class ClawExtender {
     static DcMotorEx Arm1;
     static DcMotorEx Arm2;
-
     public static int min1 = 0;
     public static int max1 = 370;
     public static int min2 = 20;
@@ -26,6 +25,7 @@ public class ClawExtender {
     public static double I2 = 1;
     public static double D2 = 100;
     public static double F2 = 1;
+    boolean Out = true;
 
 
 
@@ -39,6 +39,7 @@ public class ClawExtender {
         this.Arm2.setPower(-.4);
         this.Arm1.setTargetPosition(max1);
         this.Arm2.setTargetPosition(max2);
+        Out = true;
     }
     public void pushClawIn() /*throws InterruptedException*/ {
        /* while(Arm1.getCurrentPosition()!=60 &&Arm2.getCurrentPosition()!=60) {
@@ -47,6 +48,7 @@ public class ClawExtender {
         }*/
             this.Arm1.setTargetPosition(min1+15);
             this.Arm2.setTargetPosition(min2+15);
+            Out = false;
 
 
     }

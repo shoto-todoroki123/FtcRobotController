@@ -81,9 +81,12 @@ public class Lift {
     public void bucketDump() {
         this.bucketServo.setPosition(PositionDump);
     }*/
-    public void moveUp(){
-     this.liftMotor.setTargetPosition(Math.min(maxTicks,this.liftMotor.getCurrentPosition()+liftUpSpeed));
-     Up = true;
+    public void moveUp() {
+        if (this.extender.Out = true) {
+            this.liftMotor.setTargetPosition(Math.min(maxTicks - 100, this.liftMotor.getCurrentPosition() + liftUpSpeed));
+        }
+        this.liftMotor.setTargetPosition(Math.min(maxTicks, this.liftMotor.getCurrentPosition() + liftUpSpeed));
+        Up = true;
     }
     public void moveDown(){
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
