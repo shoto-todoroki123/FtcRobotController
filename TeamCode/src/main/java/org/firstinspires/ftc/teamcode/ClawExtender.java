@@ -15,7 +15,7 @@ public class ClawExtender {
     public static int min1 = 0;
     public static int max1 = 370;
     public static int min2 = 20;
-    public static int max2 = 550;
+    public static int max2 = 750;
     public static double verticalOffset = 59;
     public static double P1 = 1;
     public static double I1 = 1;

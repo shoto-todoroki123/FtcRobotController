@@ -23,24 +23,23 @@ public class TheFirstAndActualAutoWithSleep extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         intanke = new Intanke(hardwareMap);
-        lift =  new Lift(hardwareMap);
+        lift = new Lift(hardwareMap, extender);
         drive = new SampleMecanumDrive(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         extender = new ClawExtender(hardwareMap);
 
 
-
-        waitForStart();
+        waitForStart(); {
         //forward
-        drive.setMotorPowers(-.5,-.5,-.5,-.5);
+        drive.setMotorPowers(-.5, -.5, -.5, -.5);
         sleep(100);
         //left
-        drive.setMotorPowers(-.5,.5,-.5,.5);
+        drive.setMotorPowers(-.5, .5, -.5, .5);
         sleep(1800);
         //forward
-        drive.setMotorPowers(-.5,-.5,-.5,-.5);
+        drive.setMotorPowers(-.5, -.5, -.5, -.5);
         sleep(950);
-        drive.setMotorPowers(0,0,0,0);
+        drive.setMotorPowers(0, 0, 0, 0);
         sleep(50);
         //clip
         extender.pushClawOut();
@@ -48,29 +47,29 @@ public class TheFirstAndActualAutoWithSleep extends LinearOpMode {
         lift.makeliftmax();
         sleep(2000);
         //forward
-        drive.setMotorPowers(-5.,-.5,-.5,-.5);
+        drive.setMotorPowers(-5., -.5, -.5, -.5);
         sleep(350);
-        drive.setMotorPowers(0,0,0,0);
+        drive.setMotorPowers(0, 0, 0, 0);
         sleep(25);
         lift.half();
         sleep(1000);
         //back
-        drive.setMotorPowers(.5,.5,.5,.5);
+        drive.setMotorPowers(.5, .5, .5, .5);
         sleep(200);
-        drive.setMotorPowers(0,0,0,0);
+        drive.setMotorPowers(0, 0, 0, 0);
         sleep(50);
         lift.makeliftmin();
         sleep(2000);
         extender.pushClawIn();
         sleep(1000);
-       //back
-        drive.setMotorPowers(.5,.5,.5,.5);
+        //back
+        drive.setMotorPowers(.5, .5, .5, .5);
         sleep(1000);
         //right
-        drive.setMotorPowers(.5,-.5,.5,-.5);
+        drive.setMotorPowers(.5, -.5, .5, -.5);
         sleep(2000);
         //stop
-        drive.setMotorPowers(0,0,0,0);
+        drive.setMotorPowers(0, 0, 0, 0);
         sleep(60);
         /*//forward
         drive.setMotorPowers(-.5,-.5,-.5,-.5);
@@ -140,7 +139,7 @@ public class TheFirstAndActualAutoWithSleep extends LinearOpMode {
         //backward
         drive.setMotorPowers(-.5,-.5,-.5,-.5);
         sleep(200);*/
-
+    }
         while (opModeIsActive()) {
 
             Pose2d poseEstimate = drive.getPoseEstimate();

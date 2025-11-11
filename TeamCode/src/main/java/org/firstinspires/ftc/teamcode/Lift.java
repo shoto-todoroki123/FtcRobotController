@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 
 public class Lift {
-    private ClawExtender extender = null;
+    private final ClawExtender extender;
     DcMotorEx liftMotor;
    // Servo bucketServo;
     DcMotor hangMotor;
@@ -33,20 +33,23 @@ public class Lift {
     boolean Up = false;
 
 
-    public Lift(HardwareMap hardwareMap) {
+    public Lift(HardwareMap hardwareMap, ClawExtender extender) {
         this.liftMotor = hardwareMap.get(DcMotorEx.class, "liftMotor");
         //this.bucketServo = hardwareMap.get(Servo.class, "bucketServo");
         this.hangMotor = hardwareMap.get(DcMotor.class, "hanger");
-        this.reset();
+       this.reset();
+//
+        this.extender = extender;
     }
 
     public void reset() {
         this.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        this.setLiftHeight(0);
+//        this.setLiftHeight(0);
+        this.liftMotor.setTargetPosition(0);
         this.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.liftMotor.setPower(1);
-        this.hangMotor.setPower(.05);
+//        this.liftMotor.setPower(1);
+//        this.hangMotor.setPower(.05);
     }
 
     public void setLiftHeight(double height) {
@@ -82,13 +85,16 @@ public class Lift {
         this.bucketServo.setPosition(PositionDump);
     }*/
     public void moveUp() {
-        if (this.extender.Out = true) {
-            this.liftMotor.setTargetPosition(Math.min(maxTicks - 100, this.liftMotor.getCurrentPosition() + liftUpSpeed));
+        this.liftMotor.setPower(1);
+        if (this.extender.Out) {
+            this.liftMotor.setTargetPosition(Math.min(maxTicks , this.liftMotor.getCurrentPosition() + liftUpSpeed));
+        } else {
+            this.liftMotor.setTargetPosition(Math.min(maxTicks - 1100 , this.liftMotor.getCurrentPosition() + liftUpSpeed));
         }
-        this.liftMotor.setTargetPosition(Math.min(maxTicks, this.liftMotor.getCurrentPosition() + liftUpSpeed));
         Up = true;
     }
     public void moveDown(){
+        this.liftMotor.setPower(1);
         this.liftMotor.setTargetPosition(Math.max(0, this.liftMotor.getCurrentPosition()-liftDownSpeed));
         Up = false;
     }
